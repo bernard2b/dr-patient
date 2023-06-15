@@ -1,8 +1,20 @@
 package com.example.dr_app.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
 @Entity
 @Table( name = "patients")
 public class Patient {
@@ -47,81 +59,4 @@ public class Patient {
     )
     private String email;
     private Long doctor_id;
-
-    public Patient(String firstName, String lastName, PatientGender gender, LocalDate date_of_birth, String contact_number, String email, Long doctor_id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.date_of_birth = date_of_birth;
-        this.contact_number = contact_number;
-        this.email = email;
-        this.doctor_id = doctor_id;
-    }
-
-    public Patient() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public PatientGender getGender() {
-        return gender;
-    }
-
-    public void setGender(PatientGender gender) {
-        this.gender = gender;
-    }
-
-    public LocalDate getDate_of_birth() {
-        return date_of_birth;
-    }
-
-    public void setDate_of_birth(LocalDate date_of_birth) {
-        this.date_of_birth = date_of_birth;
-    }
-
-    public String getContact_number() {
-        return contact_number;
-    }
-
-    public void setContact_number(String contact_number) {
-        this.contact_number = contact_number;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getDoctor_id() {
-        return doctor_id;
-    }
-
-    public void setDoctor_id(Long doctor_id) {
-        this.doctor_id = doctor_id;
-    }
 }
