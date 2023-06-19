@@ -1,6 +1,5 @@
 package com.example.dr_app.model;
 
-import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -58,5 +58,10 @@ public class Patient {
             unique = true
     )
     private String email;
-    private Long doctor_id;
+
+    private Long dr_patient_fk;
+
+    public Patient() {
+        // Default constructor
+    }
 }
