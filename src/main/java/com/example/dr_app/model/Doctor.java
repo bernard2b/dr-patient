@@ -1,15 +1,18 @@
 package com.example.dr_app.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -27,14 +30,12 @@ public class Doctor {
     private Long id;
     @Column(
             name = "first_name",
-            nullable = false,
-            columnDefinition = "TEXT"
+            nullable = false
     )
     private String firstName;
     @Column(
             name = "last_name",
-            nullable = false,
-            columnDefinition = "TEXT"
+            nullable = false
     )
     private String lastName;
     @Column(
@@ -63,9 +64,11 @@ public class Doctor {
     )
     private String email;
 
-    @Column(
-            name = "date_of_birth",
-            nullable = false
-    )
-    private LocalDate dateOfBirth;
+    @OneToMany(targetEntity = Patient.class, cascade = CascadeType.ALL)
+    @JoinColumn( name = "dr_patient_fk", referencedColumnName = "id")
+    private List<Patient> patients;
+
+    public Doctor() {
+        // Default constructor
+    }
 }
