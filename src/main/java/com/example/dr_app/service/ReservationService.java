@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 
+
 @Service
 public class ReservationService {
 
@@ -26,14 +27,15 @@ public class ReservationService {
     public Reservation saveReservationData(Long doctorId, Long patientId) {
         
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.BAD_REQUEST, "No doctor found"));
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "No doctor found with id: " + doctorId));
         Patient patient = patientRepository.findById(patientId).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.BAD_REQUEST, "No patient found"));
+                new ResponseStatusException(HttpStatus.BAD_REQUEST, "No patient found with id: " + patientId));
 
-        Reservation reservation = new Reservation();
-        reservation.setDoctorId(doctorId);
-        reservation.setPatientId(patientId);
-        reservation.setLocalDateTime(LocalDateTime.now());
+        Reservation reservation = Reservation.builder()
+                .doctorId(doctorId)
+                .patientId(patientId)
+                .date(LocalDateTime.now())
+                .build();
 
         return reservationRepository.save(reservation);
     }

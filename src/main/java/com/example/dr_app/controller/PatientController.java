@@ -12,7 +12,7 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @PostMapping("/savePatients")
+    @PostMapping("/save-patients")
     public List<Patient> savePatients(@RequestBody List<Patient> patientList) {
         return patientService.savePatientsData(patientList);
     }

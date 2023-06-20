@@ -14,13 +14,14 @@ public class ReservationController {
     @Autowired
     ReservationService reservationService;
 
-    @PostMapping("/makeReservation")
+    @PostMapping("/create-reservation")
     public ResponseEntity<Reservation> makeReservation(@RequestParam Long doctorId, @RequestParam Long patientId) {
         try {
             Reservation savedReservation = reservationService.saveReservationData(doctorId, patientId);
             return ResponseEntity.ok(savedReservation);
         } catch (IllegalStateException e) {
-            return ResponseEntity.badRequest().body(null);
+            Reservation failedreservation = new Reservation();
+            return ResponseEntity.badRequest().body(failedreservation);
         }
     }
 

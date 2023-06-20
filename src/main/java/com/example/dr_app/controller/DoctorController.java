@@ -11,7 +11,7 @@ import java.util.List;
 public class DoctorController {
     @Autowired
     DoctorService doctorService;
-    @PostMapping("/saveDoctors")
+    @PostMapping("/save-doctors")
     public List<Doctor> saveDoctors(@RequestBody List<Doctor> doctorList) {
         return doctorService.saveDoctorsData(doctorList);
     }

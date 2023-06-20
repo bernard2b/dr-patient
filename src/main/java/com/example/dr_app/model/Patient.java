@@ -46,11 +46,11 @@ public class Patient {
             name = "date_of_birth",
             nullable = false
     )
-    private LocalDate date_of_birth;
+    private LocalDate dateOfBirth;
     @Column(
             name = "contact_number"
     )
-    private String contact_number;
+    private String contactNumber;
     @Column(
             name = "email",
             nullable = false,
@@ -58,10 +58,11 @@ public class Patient {
             unique = true
     )
     private String email;
-
-    private Long dr_patient_fk;
+    @Column(
+            name = "dr_patient_fk"
+    )
+    private Long drPatientFk;
 
     public Patient() {
-        // Default constructor
     }
 }
