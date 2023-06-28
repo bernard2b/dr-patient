@@ -1,6 +1,7 @@
 package com.example.dr_app.controller;
 
 import com.example.dr_app.model.Patient;
+import com.example.dr_app.model.PatientGender;
 import com.example.dr_app.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,18 @@ public class PatientController {
     @GetMapping("/patient/{id}")
     public Patient getPatientById(@PathVariable Long id) {
         return patientService.getPatientData(id);
+    }
+
+    @GetMapping("/patient-gender")
+    public List<Patient> getPatientByGender(@RequestParam PatientGender gender) {
+        if(gender == PatientGender.MALE) {
+            return patientService.getMalePatientsData();
+        } else if(gender == PatientGender.FEMALE) {
+            return patientService.getFemalePatientsData();
+        } else if(gender == PatientGender.OTHER) {
+            return patientService.getOtherGenderPatientsData();
+        } else {
+            throw new IllegalStateException("Invalid specification");
+        }
     }
 }
