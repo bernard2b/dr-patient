@@ -1,5 +1,6 @@
 package com.example.dr_app.controller;
 
+import com.example.dr_app.exceptions.DataBaseException;
 import com.example.dr_app.model.Doctor;
 import com.example.dr_app.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,12 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
     @PostMapping("/save-doctors")
-    public List<Doctor> saveDoctors(@RequestBody List<Doctor> doctorList) {
+    public List<Doctor> saveDoctors(@RequestBody List<Doctor> doctorList) throws DataBaseException {
         return doctorService.saveDoctorsData(doctorList);
     }
 
     @GetMapping("/doctors")
-    public List<Doctor> getDoctors() {
+    public List<Doctor> getDoctors() throws DataBaseException {
         return doctorService.getDoctorsData();
     }
 

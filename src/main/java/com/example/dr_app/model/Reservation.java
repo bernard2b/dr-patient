@@ -40,14 +40,10 @@ public class Reservation {
     private LocalDateTime date;
     private Date reservationDate;
     private Time reservationTime;
-
     public Reservation() {
-        // Default constructor
     }
 
     public void setDate(LocalDateTime date) {
-        // Convert LocalDateTime to UTC
         ZonedDateTime utcDateTime = date.atZone(ZoneOffset.UTC);
-        this.date = utcDateTime.toLocalDateTime();
     }
 }
