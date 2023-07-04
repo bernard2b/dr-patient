@@ -25,20 +25,23 @@ public class ReservationService {
     @Autowired
     PatientRepository patientRepository;
 
-    public Reservation saveReservationData(Long doctorId, Long patientId) {
+    public Reservation saveReservationData(Long doctorId, Long patientId) throws DataBaseException {
 
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() ->
                 new NotFoundException("No doctor found with id: " + doctorId));
         Patient patient = patientRepository.findById(patientId).orElseThrow(() ->
                 new NotFoundException("No patient found with id: " + patientId));
 
-        Reservation reservation = Reservation.builder()
-                .doctorId(doctorId)
-                .patientId(patientId)
-                .date(LocalDateTime.now())
-                .build();
-
-        return reservationRepository.save(reservation);
+        try {
+            Reservation reservation = Reservation.builder()
+                    .doctorId(doctorId)
+                    .patientId(patientId)
+                    .date(LocalDateTime.now())
+                    .build();
+            return reservationRepository.save(reservation);
+        } catch (Exception e) {
+            throw new DataBaseException("Error occurred while saving into the database.");
+        }
     }
 
     public List<Reservation> getReservationsData() throws DataBaseException {
@@ -46,7 +49,7 @@ public class ReservationService {
         try {
             return reservationRepository.findAll();
         } catch (Exception e) {
-            throw new DataBaseException("Error occurred while fetching doctors data.", e);
+            throw new DataBaseException("Error occurred while fetching reservations.", e);
         }
     }
 }

@@ -18,7 +18,7 @@ public class PatientController {
     PatientService patientService;
 
     @PostMapping("/save-patients")
-    public List<Patient> savePatients(@RequestBody List<Patient> patientList) {
+    public List<Patient> savePatients(@RequestBody List<Patient> patientList) throws DataBaseException {
         return patientService.savePatientsData(patientList);
     }
 

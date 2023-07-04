@@ -13,7 +13,7 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
     @PostMapping("/save-doctors")
-    public List<Doctor> saveDoctors(@RequestBody List<Doctor> doctorList) {
+    public List<Doctor> saveDoctors(@RequestBody List<Doctor> doctorList) throws DataBaseException {
         return doctorService.saveDoctorsData(doctorList);
     }
 

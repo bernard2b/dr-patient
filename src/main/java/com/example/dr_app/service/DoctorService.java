@@ -1,6 +1,5 @@
 package com.example.dr_app.service;
 
-import com.example.dr_app.exceptions.ApiRequestException;
 import com.example.dr_app.exceptions.DataBaseException;
 import com.example.dr_app.exceptions.NotFoundException;
 import com.example.dr_app.model.Doctor;
@@ -16,11 +15,11 @@ public class DoctorService {
 
     @Autowired
     DoctorRepository doctorRepository;
-    public List<Doctor> saveDoctorsData(List<Doctor> doctorList) {
+    public List<Doctor> saveDoctorsData(List<Doctor> doctorList) throws DataBaseException {
         try {
             return doctorRepository.saveAll(doctorList);
         } catch (Exception e) {
-            throw new ApiRequestException("Error occurred while sending a request.", e);
+            throw new DataBaseException("Error occurred while saving to the database.", e);
         }
     }
 

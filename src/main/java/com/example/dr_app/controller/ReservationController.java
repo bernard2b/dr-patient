@@ -19,11 +19,10 @@ public class ReservationController {
     ReservationService reservationService;
 
     @PostMapping("/create-reservation")
-    public ResponseEntity<Reservation> makeReservation(@RequestParam Long doctorId, @RequestParam Long patientId) {
+    public ResponseEntity<Reservation> makeReservation(@RequestParam Long doctorId, @RequestParam Long patientId) throws DataBaseException {
 
             Reservation savedReservation = reservationService.saveReservationData(doctorId, patientId);
             return ResponseEntity.ok(savedReservation);
-
     }
 
     @GetMapping("/reservations")
