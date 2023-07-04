@@ -1,6 +1,7 @@
 package com.example.dr_app.service;
 
 import com.example.dr_app.model.Patient;
+import com.example.dr_app.model.PatientGender;
 import com.example.dr_app.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,14 @@ public class PatientService {
         Optional<Patient> patientOptional = patientRepository.findById(id);
         return patientOptional.get();
     }
+
+    public List<Patient> getPatientsByGenderData(PatientGender gender) {
+
+        if(gender == PatientGender.MALE || gender == PatientGender.FEMALE || gender == PatientGender.OTHER) {
+            return patientRepository.findByGender(gender);
+        } else {
+            throw new IllegalStateException("Invalid gender provided");
+        }
+    }
+
 }

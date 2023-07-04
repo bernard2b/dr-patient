@@ -1,6 +1,7 @@
 package com.example.dr_app.controller;
 
 import com.example.dr_app.model.Patient;
+import com.example.dr_app.model.PatientGender;
 import com.example.dr_app.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,10 @@ public class PatientController {
     @GetMapping("/patient/{id}")
     public Patient getPatientById(@PathVariable Long id) {
         return patientService.getPatientData(id);
+    }
+
+    @GetMapping("/patient-gender")
+    public List<Patient> getPatientByGender(@RequestParam PatientGender gender) {
+        return patientService.getPatientsByGenderData(gender);
     }
 }
