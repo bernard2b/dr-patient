@@ -30,14 +30,6 @@ public class PatientController {
 
     @GetMapping("/patient-gender")
     public List<Patient> getPatientByGender(@RequestParam PatientGender gender) {
-        if(gender == PatientGender.MALE) {
-            return patientService.getMalePatientsData();
-        } else if(gender == PatientGender.FEMALE) {
-            return patientService.getFemalePatientsData();
-        } else if(gender == PatientGender.OTHER) {
-            return patientService.getOtherGenderPatientsData();
-        } else {
-            throw new IllegalStateException("Invalid specification");
-        }
+        return patientService.getPatientsByGenderData(gender);
     }
 }

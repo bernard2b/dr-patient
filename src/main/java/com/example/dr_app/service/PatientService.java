@@ -33,19 +33,12 @@ public class PatientService {
     }
 
     public List<Patient> getPatientsByGenderData(PatientGender gender) {
-        return patientRepository.findByGender(gender);
-    }
-    public List<Patient> getMalePatientsData() {
-        return getPatientsByGenderData(PatientGender.MALE);
-    }
 
-    public List<Patient> getFemalePatientsData() {
-        return getPatientsByGenderData(PatientGender.FEMALE);
+        if(gender == PatientGender.MALE || gender == PatientGender.FEMALE || gender == PatientGender.OTHER) {
+            return patientRepository.findByGender(gender);
+        } else {
+            throw new IllegalStateException("Invalid gender provided");
+        }
     }
-
-    public List<Patient> getOtherGenderPatientsData() {
-        return getPatientsByGenderData(PatientGender.OTHER);
-    }
-
 
 }
