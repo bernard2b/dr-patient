@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import java.time.LocalDate;
 
 @Data
@@ -65,4 +64,5 @@ public class Patient {
 
     public Patient() {
     }
+
 }
