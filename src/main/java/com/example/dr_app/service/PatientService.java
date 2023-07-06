@@ -51,4 +51,29 @@ public class PatientService {
         }
     }
 
+    public Patient updatePatientData(Long id, Patient patient) {
+
+        Patient existingPatient = getPatientData(id);
+
+        if (patient.getFirstName() != null) {
+            existingPatient.setFirstName(patient.getFirstName());
+        }
+        if(patient.getLastName() !=null) {
+            existingPatient.setLastName(patient.getLastName());
+        }
+        if(patient.getContactNumber() != null) {
+            existingPatient.setContactNumber(patient.getContactNumber());
+        }
+
+        return patientRepository.save(existingPatient);
+    }
+
+    public Patient deletePatientData(Long id) {
+
+        Patient existingPatient = getPatientData(id);
+        patientRepository.delete(existingPatient);
+
+        return existingPatient;
+    }
+
 }
